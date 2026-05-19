@@ -1,5 +1,5 @@
 import './index.css'
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from '@vercel/analytics'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
