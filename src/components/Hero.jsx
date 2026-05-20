@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0a0a0a] px-6">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden section-bg px-6">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 md:w-[600px] md:h-[600px] bg-green-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-3xl mx-auto text-center relative z-10 pt-16 pb-12">
@@ -40,7 +40,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-gray-400 max-w-xl mx-auto text-sm md:text-lg mb-8 leading-relaxed"
+          className="text-muted max-w-xl mx-auto text-sm md:text-lg mb-8 leading-relaxed"
         >
           Passionate about building secure online communities and modern digital experiences.
           Exploring cybersecurity concepts and developing innovative web solutions.
@@ -82,7 +82,7 @@ export default function Hero() {
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-green-400 transition-colors text-xs font-mono"
+              className="text-muted hover:text-green-400 transition-colors text-xs font-mono"
             >
               {label}
             </a>
@@ -92,7 +92,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
-          className="mt-10 text-gray-600 text-xl"
+          className="mt-10 text-green-400 text-xl"
         >
           ↓
         </motion.div>

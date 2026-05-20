@@ -1,4 +1,3 @@
-'use client'
 import { motion } from 'framer-motion'
 
 const skills = [
@@ -12,23 +11,24 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 bg-[#0a0a0a]">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="skills" className="py-20 section-bg">
+      <div className="max-w-4xl mx-auto px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="mb-10"
         >
-          <p className="text-green-400 font-mono text-sm tracking-widest uppercase mb-2">
+          <p className="text-green-400 font-mono text-xs tracking-widest uppercase mb-2">
             &gt; skills --list
           </p>
-          <h2 className="text-4xl md:text-5xl font-black mb-12">
+          <h2 className="text-3xl md:text-5xl font-black">
             My <span className="gradient-text">Skills</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="flex flex-col gap-4">
           {skills.map(({ name, icon, level }, index) => (
             <motion.div
               key={name}
@@ -36,12 +36,12 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-[#111] border border-green-500/20 rounded-xl p-6 card-hover"
+              className="card-bg card-border border rounded-xl p-5 card-hover"
             >
               <div className="flex justify-between items-center mb-3">
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{icon}</span>
-                  <span className="text-white font-semibold">{name}</span>
+                  <span className="font-semibold text-sm md:text-base">{name}</span>
                 </div>
                 <span className="text-green-400 font-mono text-sm">{level}%</span>
               </div>

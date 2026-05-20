@@ -15,11 +15,11 @@ function ContactForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-green-500/10 border border-green-500/30 rounded-2xl p-8 text-center"
+        className="card-bg card-border border rounded-2xl p-8 text-center"
       >
         <p className="text-4xl mb-4">✅</p>
         <p className="text-green-400 font-bold text-xl mb-2">Message Sent!</p>
-        <p className="text-gray-400 text-sm">
+        <p className="text-muted text-sm">
           Thanks for reaching out. I will get back to you soon!
         </p>
       </motion.div>
@@ -28,9 +28,8 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Name */}
       <div>
-        <label className="block text-gray-400 text-sm mb-1 font-mono">
+        <label className="block text-muted text-sm mb-1 font-mono">
           Your Name
         </label>
         <input
@@ -38,13 +37,12 @@ function ContactForm() {
           name="name"
           required
           placeholder="John Doe"
-          className="w-full bg-[#111] border border-green-500/20 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-green-500 transition-colors placeholder-gray-600"
+          className="w-full card-bg card-border border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-green-500 transition-colors placeholder-gray-600"
         />
       </div>
 
-      {/* Email */}
       <div>
-        <label className="block text-gray-400 text-sm mb-1 font-mono">
+        <label className="block text-muted text-sm mb-1 font-mono">
           Your Email
         </label>
         <input
@@ -52,16 +50,18 @@ function ContactForm() {
           name="email"
           required
           placeholder="john@example.com"
-          className="w-full bg-[#111] border border-green-500/20 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-green-500 transition-colors placeholder-gray-600"
+          className="w-full card-bg card-border border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-green-500 transition-colors placeholder-gray-600"
         />
-        <ValidationError field="email" prefix="Email" errors={state.errors}
+        <ValidationError
+          field="email"
+          prefix="Email"
+          errors={state.errors}
           className="text-red-400 text-xs mt-1"
         />
       </div>
 
-      {/* Message */}
       <div>
-        <label className="block text-gray-400 text-sm mb-1 font-mono">
+        <label className="block text-muted text-sm mb-1 font-mono">
           Message
         </label>
         <textarea
@@ -69,14 +69,16 @@ function ContactForm() {
           required
           rows={5}
           placeholder="Tell me about your project or opportunity..."
-          className="w-full bg-[#111] border border-green-500/20 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-green-500 transition-colors placeholder-gray-600 resize-none"
+          className="w-full card-bg card-border border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-green-500 transition-colors placeholder-gray-600 resize-none"
         />
-        <ValidationError field="message" prefix="Message" errors={state.errors}
+        <ValidationError
+          field="message"
+          prefix="Message"
+          errors={state.errors}
           className="text-red-400 text-xs mt-1"
         />
       </div>
 
-      {/* Submit */}
       <button
         type="submit"
         disabled={state.submitting}
@@ -85,8 +87,8 @@ function ContactForm() {
         {state.submitting ? '📤 Sending...' : '📧 Send Message'}
       </button>
 
-      {/* General errors */}
-      <ValidationError errors={state.errors}
+      <ValidationError
+        errors={state.errors}
         className="text-red-400 text-xs text-center"
       />
     </form>
@@ -95,8 +97,8 @@ function ContactForm() {
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 bg-[#0a0a0a]">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="contact" className="py-20 section-bg">
+      <div className="max-w-4xl mx-auto px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -110,14 +112,13 @@ export default function Contact() {
           <h2 className="text-3xl md:text-5xl font-black">
             Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-gray-400 text-sm md:text-base mt-4 leading-relaxed">
+          <p className="text-muted text-sm md:text-base mt-4 leading-relaxed">
             Open to collaborations, cybersecurity projects, and new opportunities.
             Send me a message and I will get back to you!
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-10">
-          {/* Form */}
+        <div className="grid md:grid-cols-2 gap-8">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -127,7 +128,6 @@ export default function Contact() {
             <ContactForm />
           </motion.div>
 
-          {/* Socials */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -135,7 +135,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="flex flex-col justify-center gap-4"
           >
-            <p className="text-gray-400 text-sm font-mono mb-2">
+            <p className="text-muted text-sm font-mono mb-2">
               &gt; Or find me on:
             </p>
             {socials.map(({ label, url, icon }) => (
@@ -144,24 +144,23 @@ export default function Contact() {
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 bg-[#111] border border-green-500/20 rounded-xl p-4 card-hover"
+                className="flex items-center gap-4 card-bg card-border border rounded-xl p-4 card-hover"
               >
                 <span className="text-2xl">{icon}</span>
-                <span className="text-gray-300 font-medium">{label}</span>
+                <span className="font-medium text-sm">{label}</span>
                 <span className="ml-auto text-green-400 text-sm">→</span>
               </a>
             ))}
 
-            {/* Email protected */}
-            <div className="bg-[#111] border border-green-500/20 rounded-xl p-4 mt-2">
-              <p className="text-gray-500 text-xs font-mono mb-1">
+            <div className="card-bg card-border border rounded-xl p-4 mt-2">
+              <p className="text-muted text-xs font-mono mb-1">
                 &gt; email
               </p>
               <p className="text-green-400 text-sm font-mono">
                 belloayomipo575
-                <span className="text-gray-500">[@]</span>
+                <span className="text-muted">[@]</span>
                 gmail
-                <span className="text-gray-500">[.]</span>
+                <span className="text-muted">[.]</span>
                 com
               </p>
             </div>

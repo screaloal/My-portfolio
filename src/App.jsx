@@ -1,5 +1,6 @@
 import './index.css'
 import { Analytics } from '@vercel/analytics/react'
+import { ThemeProvider } from './ThemeContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -10,18 +11,19 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <main>
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
-      <Analytics />
-    </main>
+    <ThemeProvider>
+      <main>
+        <Navbar />
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+        <Footer />
+        <Analytics />
+      </main>
+    </ThemeProvider>
   )
 }
 
 export default App
-

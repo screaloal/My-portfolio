@@ -29,8 +29,8 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 bg-[#0d0d0d]">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="projects" className="py-20 section-bg-alt">
+      <div className="max-w-4xl mx-auto px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,15 +54,15 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-[#111] border border-green-500/20 rounded-2xl overflow-hidden card-hover"
+              className="card-bg card-border border rounded-2xl overflow-hidden card-hover"
             >
               <div className={`h-1.5 bg-gradient-to-r ${color}`} />
-              <div className="p-5">
+              <div className="p-5 md:p-6">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-3xl">{icon}</span>
-                  <h3 className="text-lg font-bold text-white">{title}</h3>
+                  <h3 className="text-lg font-bold">{title}</h3>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                <p className="text-muted text-sm leading-relaxed mb-4">
                   {description}
                 </p>
                 <div className="flex flex-wrap gap-2">
