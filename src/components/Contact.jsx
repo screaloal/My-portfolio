@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useForm, ValidationError } from '@formspree/react'
+import { useState } from 'react'
 
 const socials = [
   { label: 'GitHub', url: 'https://github.com/screaloal', icon: '🐙' },
@@ -8,9 +8,43 @@ const socials = [
 ]
 
 function ContactForm() {
-  const [state, handleSubmit] = useForm('mqejewjg')
+  const [status, setStatus] = useState('idle')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  })
 
-  if (state.succeeded) {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('sending')
+
+    try {
+      const response = await fetch('https://formspree.io/f/mqejewjg', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (err) {
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -22,6 +56,12 @@ function ContactForm() {
         <p className="text-muted text-sm">
           Thanks for reaching out. I will get back to you soon!
         </p>
+        <button
+          onClick={() => setStatus('idle')}
+          className="mt-4 text-green-400 text-sm font-mono hover:text-green-300"
+        >
+          Send another message
+        </button>
       </motion.div>
     )
   }
@@ -36,6 +76,8 @@ function ContactForm() {
           type="text"
           name="name"
           required
+          value={formData.name}
+          onChange={handleChange}
           placeholder="John Doe"
           className="w-full card-bg card-border border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-green-500 transition-colors placeholder-gray-600"
         />
@@ -49,14 +91,10 @@ function ContactForm() {
           type="email"
           name="email"
           required
+          value={formData.email}
+          onChange={handleChange}
           placeholder="john@example.com"
           className="w-full card-bg card-border border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-green-500 transition-colors placeholder-gray-600"
-        />
-        <ValidationError
-          field="email"
-          prefix="Email"
-          errors={state.errors}
-          className="text-red-400 text-xs mt-1"
         />
       </div>
 
@@ -68,29 +106,26 @@ function ContactForm() {
           name="message"
           required
           rows={5}
+          value={formData.message}
+          onChange={handleChange}
           placeholder="Tell me about your project or opportunity..."
           className="w-full card-bg card-border border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-green-500 transition-colors placeholder-gray-600 resize-none"
         />
-        <ValidationError
-          field="message"
-          prefix="Message"
-          errors={state.errors}
-          className="text-red-400 text-xs mt-1"
-        />
       </div>
+
+      {status === 'error' && (
+        <p className="text-red-400 text-xs text-center">
+          ❌ Something went wrong. Please try again or email me directly.
+        </p>
+      )}
 
       <button
         type="submit"
-        disabled={state.submitting}
+        disabled={status === 'sending'}
         className="w-full py-3 bg-green-500 text-black font-bold rounded-lg hover:bg-green-400 transition-all duration-200 glow disabled:opacity-50 disabled:cursor-not-allowed text-sm"
       >
-        {state.submitting ? '📤 Sending...' : '📧 Send Message'}
+        {status === 'sending' ? '📤 Sending...' : '📧 Send Message'}
       </button>
-
-      <ValidationError
-        errors={state.errors}
-        className="text-red-400 text-xs text-center"
-      />
     </form>
   )
 }
